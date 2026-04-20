@@ -3,48 +3,76 @@ import { motion } from "framer-motion";
 
 const Experience = () => {
   return (
-    <div className="border-b border-neutral-950 pb-4" id="experience">
+    <div className="border-b border-neutral-900 pb-20" id="experience">
+      
+
       <motion.h2
         whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -100 }}
-        transition={{ duration: 0.5 }}
-        className="my-20 text-center text-4xl text-cyan-50"
+        initial={{ opacity: 0, y: -80 }}
+        transition={{ duration: 0.6 }}
+        className="my-16 text-center text-4xl font-semibold text-white"
       >
         Experience
       </motion.h2>
-      <div>
-        {EXPERIENCES.map((experience, index) => (
-          <div key={index} className="mb-8 flex flex-wrap lg:justify-center">
+
+      <div className="relative max-w-5xl mx-auto">
+
+
+        <div className="absolute left-4 md:left-1/2 top-0 h-full w-[2px] bg-purple-500/30" />
+
+        {EXPERIENCES.map((exp, index) => (
+          <div
+            key={index}
+            className={`mb-12 flex flex-col md:flex-row items-center ${
+              index % 2 === 0 ? "md:flex-row-reverse" : ""
+            }`}
+          >
+
+
+            <div className="absolute left-2 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-purple-500 rounded-full border-4 border-black z-10" />
+
+
             <motion.div
-              whileInView={{ opacity: 1, x: 0 }}
-              initial={{ opacity: 0, x: -100 }}
-              transition={{ duration: 1 }}
-              className="w-full lg:w-1/4"
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 50 }}
+              transition={{ duration: 0.6 }}
+              className="w-full md:w-1/2 px-6"
             >
-              <p className="mb-2 text-sm text-neutral-400">{experience.year}</p>
+              <div className="bg-neutral-900 border border-neutral-700 rounded-2xl p-6 shadow-lg hover:shadow-purple-500/20 hover:scale-[1.02] transition duration-300">
+
+
+                <p className="text-sm text-purple-400 mb-2">{exp.year}</p>
+
+
+                <h3 className="text-lg font-semibold text-white">
+                  {exp.role}
+                </h3>
+
+
+                <p className="text-sm text-gray-400 mb-3">
+                  {exp.company}
+                </p>
+
+
+                <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                  {exp.description}
+                </p>
+
+
+                <div className="flex flex-wrap gap-2">
+                  {exp.technologies.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="text-xs px-3 py-1 bg-purple-500/10 text-purple-300 rounded-full border border-purple-500/20"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+              </div>
             </motion.div>
-            <motion.div
-              whileInView={{ opacity: 1, x: 0 }}
-              initial={{ opacity: 0, x: 100 }}
-              transition={{ duration: 1 }}
-              className="w-full max-w-xl lg:w-3/4"
-            >
-              <h6 className="mb-2 font-semibold">
-                {experience.role} -{" "}
-                <span className="text-sm text-purple-100">
-                  {experience.company}
-                </span>
-              </h6>
-              <p className="mb-4 text-neutral-400">{experience.description}</p>
-              {experience.technologies.map((tech, index) => (
-                <span
-                  key={index}
-                  className="mr-2 mt-4 rounded bg-neutral-900 px-1 py-1 text-sm font-medium text-purple-800"
-                >
-                  {tech}
-                </span>
-              ))}
-            </motion.div>
+
           </div>
         ))}
       </div>

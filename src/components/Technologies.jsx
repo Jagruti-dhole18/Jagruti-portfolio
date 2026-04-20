@@ -1,116 +1,95 @@
 import { RiReactjsLine } from "react-icons/ri";
-import { FaHtml5 } from "react-icons/fa";
-import { FaCss3Alt } from "react-icons/fa";
-import { SiJavascript } from "react-icons/si";
-import { SiC } from "react-icons/si";
-import { FaJava } from "react-icons/fa";
-import { SiMysql } from "react-icons/si";
-import { BiData } from "react-icons/bi";
-import { SiTailwindcss } from "react-icons/si";
+import { FaHtml5, FaCss3Alt, FaJava, FaGitAlt, FaGithub, FaDocker } from "react-icons/fa";
+import { SiJavascript, SiC, SiMysql, SiTailwindcss, SiSpringboot, SiThymeleaf, SiBootstrap, SiPhp, SiCplusplus, SiTypescript, SiExpress, SiPostgresql, SiNodedotjs, SiMongodb, SiPython, SiNextdotjs, SiPostman, SiVercel, SiNetlify, SiRender } from "react-icons/si";
+import { BiLogoVisualStudio } from "react-icons/bi";
 import { motion } from "framer-motion";
 
-const iconVariants = (duration) => ({
-  initial: { y: 0 },
-  animate: {
-    y: [0, -20, 0],
-    transition: {
-      duration: duration,
-      ease: "easeInOut",
-      repeat: Infinity,
-    },
-  },
-});
+const techStack = [
+  { icon: <RiReactjsLine />, name: "React", color: "text-cyan-400" },
+  { icon: <SiNextdotjs />, name: "Next.js", color: "text-white" },
+  { icon: <SiTypescript />, name: "TypeScript", color: "text-blue-400" },
+  { icon: <SiJavascript />, name: "JavaScript", color: "text-yellow-400" },
+  { icon: <FaHtml5 />, name: "HTML", color: "text-orange-500" },
+  { icon: <FaCss3Alt />, name: "CSS", color: "text-blue-500" },
+  { icon: <SiTailwindcss />, name: "Tailwind", color: "text-cyan-400" },
+  { icon: <SiBootstrap />, name: "Bootstrap", color: "text-purple-500" },
+
+  { icon: <SiSpringboot />, name: "Spring Boot", color: "text-green-500" },
+  { icon: <SiThymeleaf />, name: "Thymeleaf", color: "text-green-600" },
+  { icon: <FaJava />, name: "Java", color: "text-red-500" },
+  { icon: <SiNodedotjs />, name: "Node.js", color: "text-green-400" },
+  { icon: <SiExpress />, name: "Express.js", color: "text-gray-300" },
+
+  { icon: <SiMongodb />, name: "MongoDB", color: "text-green-600" },
+  { icon: <SiPostgresql />, name: "PostgreSQL", color: "text-blue-400" },
+  { icon: <SiMysql />, name: "MySQL", color: "text-blue-600" },
+
+  { icon: <SiPython />, name: "Python", color: "text-yellow-300" },
+  { icon: <SiC />, name: "C", color: "text-blue-700" },
+  { icon: <SiCplusplus />, name: "C++", color: "text-blue-500" },
+  { icon: <SiPhp />, name: "PHP", color: "text-indigo-400" },
+];
+
+const tools = [
+  { icon: <FaGitAlt />, name: "Git", color: "text-orange-500" },
+  { icon: <FaGithub />, name: "GitHub", color: "text-white" },
+  { icon: <FaDocker />, name: "Docker", color: "text-blue-400" },
+  { icon: <SiPostman />, name: "Postman", color: "text-orange-400" },
+  { icon: <BiLogoVisualStudio />, name: "VS Code", color: "text-blue-500" },
+  { icon: <SiVercel />, name: "Vercel", color: "text-white" },
+  { icon: <SiNetlify />, name: "Netlify", color: "text-green-400" },
+  { icon: <SiRender />, name: "Render", color: "text-purple-400" },
+];
+
+const MarqueeRow = ({ items, reverse = false }) => {
+  
+  
+  const duration = items.length * 3; 
+
+  return (
+    <div className="relative w-full overflow-hidden">
+      
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10" />
+
+      <motion.div
+        animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
+        transition={{
+          repeat: Infinity,
+          duration: duration, 
+          ease: "linear",
+        }}
+        className="flex gap-6 w-max"
+      >
+        {[...items, ...items, ...items].map((item, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center justify-center min-w-[120px] bg-neutral-900 border border-neutral-700 rounded-2xl p-4 hover:scale-110 hover:shadow-purple-500/30 hover:shadow-lg transition duration-300"
+          >
+            <div className={`text-4xl ${item.color}`}>{item.icon}</div>
+            <p className="text-sm text-gray-300 mt-2">{item.name}</p>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
 
 const Technologies = () => {
   return (
     <div className="border-b border-neutral-800 pb-24" id="technologies">
-      <motion.h2
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -100 }}
-        transition={{ duration: 1.5 }}
-        className="my-20 text-center text-4xl text-cyan-50"
-      >
-        Technologies
-      </motion.h2>
-      <motion.div
-        whileInView={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: -100 }}
-        transition={{ duration: 1.5 }}
-        className=" flex flex-wrap items-center justify-center gap-4"
-      >
-        <motion.div
-          variants={iconVariants(2)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4"
-        >
-          <RiReactjsLine className="text-7xl text-cyan-400" />
-        </motion.div>
-        <motion.div
-          variants={iconVariants(2.5)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4"
-        >
-          <SiTailwindcss className="text-7xl text-cyan-400" />
-        </motion.div>
-        <motion.div
-          variants={iconVariants(3)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4"
-        >
-          <FaHtml5 className="text-7xl text-orange-600" />
-        </motion.div>
-        <motion.div
-          variants={iconVariants(3.5)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4"
-        >
-          <FaCss3Alt className="text-7xl text-blue-500" />
-        </motion.div>
-        <motion.div
-          variants={iconVariants(4)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4"
-        >
-          <SiJavascript className="text-7xl text-yellow-400" />
-        </motion.div>
-        <motion.div
-          variants={iconVariants(4.5)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4"
-        >
-          <SiC className="text-7xl text-blue-700" />
-        </motion.div>
-        <motion.div
-          variants={iconVariants(5)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4"
-        >
-          <FaJava className="text-7xl text-red-600" />
-        </motion.div>
-        <motion.div
-          variants={iconVariants(5.5)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4"
-        >
-          <SiMysql className="text-7xl text-blue-600" />
-        </motion.div>
-        <motion.div
-          variants={iconVariants(6)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4"
-        >
-          <BiData className="text-7xl text-purple-600" />
-        </motion.div>
-      </motion.div>
+      
+      <h2 className="my-16 text-center text-4xl text-white font-semibold">
+        Technologies & Tools
+      </h2>
+
+      <MarqueeRow items={techStack} />
+
+      <div className="mt-10">
+        <MarqueeRow items={tools} reverse />
+      </div>
+
     </div>
   );
 };
