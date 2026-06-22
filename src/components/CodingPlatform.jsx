@@ -1,7 +1,7 @@
 import { FaGithub, FaHackerrank } from "react-icons/fa";
 import { SiLeetcode, SiGeeksforgeeks, SiCodechef } from "react-icons/si";
 import { motion } from "framer-motion";
-import resume from "../assets/resume.jpg";
+import resume from "../assets/resume.pdf"
 
 const codingPlatforms = [
   {
