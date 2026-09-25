@@ -1,37 +1,27 @@
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 const Loader = () => {
-  return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0a0a0a]">
-      <div className="relative flex items-center justify-center">
+  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        {/* Rotating Ring */}
+  return (
+    <div className="loader-screen" aria-live="polite" aria-busy="true">
+      <div className="loader-orbit">
         <motion.div
-          animate={{ rotate: 360 }}
+          animate={prefersReducedMotion ? undefined : { rotate: 360 }}
           transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "linear",
+            duration: 1.4,
+            repeat: prefersReducedMotion ? 0 : Infinity,
+            ease: 'linear',
           }}
-          className="w-52 h-52 rounded-full border-[3px] border-neutral-800 border-t-purple-500 border-r-pink-500"
+          className="loader-ring loader-ring-primary"
         />
 
-        {/* Inner Ring */}
-        <div className="absolute w-44 h-44 rounded-full border border-neutral-700" />
+        <div className="loader-ring loader-ring-secondary" />
 
-        {/* Center Content */}
-        <div className="absolute flex flex-col items-center justify-center text-center">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-wider text-white">
-            JD'S
-          </h1>
-
-          <p className="text-xs md:text-sm tracking-[4px] text-purple-400 mt-1">
-            PORTFOLIO
-          </p>
-
-          <p className="text-[11px] text-neutral-500 mt-3">
-            Full Stack Developer
-          </p>
+        <div className="loader-core">
+          <span className="loader-brand">JD</span>
+          <span className="loader-tag">PORTFOLIO</span>
+          <span className="loader-role">FULL STACK DEVELOPER</span>
         </div>
       </div>
     </div>

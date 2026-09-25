@@ -1,68 +1,63 @@
-import { motion } from "framer-motion";
-import { Link } from "react-scroll";
-import { FaGithub, FaLinkedin, FaInstagram, FaArrowUp } from "react-icons/fa";
+import { motion } from 'framer-motion';
+import { Link } from 'react-scroll';
+import { FaArrowUp } from 'react-icons/fa';
 
 const Footer = () => {
-  return (
-    <footer className="border-t border-neutral-800 mt-20 py-10 px-6 text-white">
-      
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+  const currentYear = new Date().getFullYear();
+  const footerLinks = [
+    { name: 'Home', to: 'hero' },
+    { name: 'About', to: 'about' },
+    { name: 'Skills', to: 'technologies' },
+    { name: 'Experience', to: 'experience' },
+    { name: 'Projects', to: 'projects' },
+    { name: 'Coding', to: 'coding' },
+    { name: 'Contact', to: 'contact' },
+  ];
 
-        
+  return (
+    <footer className="footer-shell">
+      <div className="footer-inner">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center md:text-left"
+          transition={{ duration: 0.45 }}
+          className="footer-brand"
         >
-          <h2 className="text-2xl font-semibold">Jagruti Dhole</h2>
-          <p className="text-gray-400 text-sm mt-1">
-            FullStack Developer
-          </p>
-          <p className="text-gray-500 text-xs mt-3">
-            © 2026 All Rights Reserved
-          </p>
+          <h2>Jagruti Dhole</h2>
+          <p>FullStack Developer</p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-wrap justify-center gap-6 text-sm"
+          transition={{ duration: 0.45 }}
+          className="footer-links"
         >
-          {["hero", "aboutme", "projects", "technologies", "experience", "coding", "contact"].map((section, i) => (
+          {footerLinks.map((section) => (
             <Link
-              key={i}
-              to={section}
+              key={section.name}
+              to={section.to}
               smooth={true}
               duration={800}
-              className="cursor-pointer text-gray-400 hover:text-pink-400 transition"
+              offset={-80}
+              hashSpy={false}
+              className="cursor-pointer"
             >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
+              {section.name}
             </Link>
           ))}
         </motion.div>
-
       </div>
 
-      <div className="mt-10 flex flex-col items-center gap-4">
-
-
-        <p className="text-sm text-gray-500">
-          Made with <span className="text-pink-500">❤</span> by Jagruti
-        </p>
-
-        <Link
-          to="hero"
-          smooth={true}
-          duration={800}
-          className="p-3 rounded-full bg-neutral-800 hover:bg-purple-500 transition cursor-pointer"
-        >
+      <div className="footer-meta">
+        <div className="footer-meta-text">
+          <p className="footer-note">© {currentYear} Jagruti Dhole. All rights reserved.</p>
+          <p className="footer-note footer-heart">Made with <span aria-label="love">❤</span> by Jagruti</p>
+        </div>
+        <Link to="hero" smooth={true} duration={800} offset={-80} hashSpy={false} className="back-to-top" aria-label="Back to top">
           <FaArrowUp />
         </Link>
-
       </div>
-
     </footer>
   );
 };

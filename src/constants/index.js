@@ -1,37 +1,60 @@
-import project1 from '../assets/project1.png'
-import project2 from '../assets/project2.png'
-import project3 from '../assets/project3.jpeg'
-import project4 from '../assets/project4.jpeg'
-import project5 from '../assets/project5.jpeg'
-import project6 from '../assets/project6.jpeg'
-import project7 from '../assets/project7.jpg'
+import project1 from "../assets/project1.png";
+import project2 from "../assets/project2.png";
+import project3 from "../assets/project3.jpeg";
+import project4 from "../assets/project4.jpeg";
+import project5 from "../assets/project5.jpg";
+import project6 from "../assets/project6.png";
 
-export const HERO_CONTENT ="Frontend Developer and CS student with a strong foundation in web technologies and programming. Experienced in building responsive interfaces and currently advancing in the MERN stack.";
-
-export const ABOUT_TEXT = "I’m a Computer Science student and FullStack Developer who enjoys building clean, responsive, and user-friendly web applications. I like turning ideas into simple and interactive digital experiences while continuously improving my skills through hands-on projects.I have a strong foundation in Core and Advanced Java, and I’m currently exploring full-stack development using the MERN stack along with Spring Boot applications.Beyond coding, I’m a curious learner with an interest in languages, holding a German A1 certification. I enjoy learning new technologies and building projects that solve real-world problems.";
+export const HERO_CONTENT =
+  "Full-Stack Developer and Computer Engineering student focused on building scalable, production-ready applications. Experienced with React, Next.js, Node.js, Spring Boot, MongoDB, REST APIs, microservices, and modern DevOps tools, with hands-on experience taking projects from development to deployment.";
+export const ABOUT_TEXT =
+  "I’m a Computer Science student and FullStack Developer who enjoys building clean, responsive, and user-friendly web applications. I like turning ideas into simple and interactive digital experiences while continuously improving my skills through hands-on projects.I have a strong foundation in Core and Advanced Java, and I’m currently exploring full-stack development using the MERN stack along with Spring Boot applications.Beyond coding, I’m a curious learner with an interest in languages, holding a German A1 certification. I enjoy learning new technologies and building projects that solve real-world problems.";
 
 export const EXPERIENCES = [
-    {
-        year: "2024 - current",
-        role: "Frontend Developer",
-        company: "Akatsuki Coding Club",
-        description: "I’m an active member of the Akatsuki Coding Club, where I learn new coding skills, work on projects, and take part in events. Being part of the club helps me improve my problem-solving, teamwork, and creativity. It’s a great place to learn and grow with other students who love technology.",
-        technologies: ["HTML", "CSS", "Javascript","Java","mySQL"],
-      },
-      {
-            year: " june-2026 - current",
-            role: "Software Engineering Intern",
-            company: "eInfoChips - An Arrow Electronics Company",
-            description: "Engineering intern at eInfoChips, a product engineering and semiconductor solutions company",
-            technologies: ["Designing"],
-        },
-        {
-            year: " sep-2024 - nov-2024",
-            role: "Intern",
-            company: "Nextech Infosystems",
-            description: "Designed and developed various types of UI using JavaFX and also get more information about how JavaFX works in Applications although I am not able to create fully developed applications but i got basic idea about JavaFX",
-            technologies: ["JavaFX"],
-        },
+  {
+    year: "Oct 2024 - Present",
+    role: "Technical Member",
+    company: "Akatsuki Coding Club, RCPIT",
+    description:
+      "Contribute to technical activities, coding events, workshops, and development projects. Worked on the Akatsuki Project Hub, a platform for managing student projects, including an admin dashboard with role-based access and an automated project approval workflow.",
+    technologies: [
+      "Java",
+      "JavaScript",
+      "React",
+      "Node.js",
+      "HTML",
+      "CSS",
+      "Git",
+      "GitHub",
+    ],
+  },
+
+  {
+    year: "Jun 2026 - Aug-2026",
+    role: "Software Engineering Intern",
+    company: "eInfoChips - An Arrow Electronics Company",
+    description:
+      "Working on a hardware-integrated gesture detection system for real-time hand-motion recognition using embedded sensors and software. Contributed to software processing, gesture output, testing, and debugging for reliable real-time detection.",
+    technologies: ["C", "Embedded Systems", "ESP32", "MPU6050"],
+  },
+
+  {
+    year: "Apr 2026",
+    role: "Freelance Frontend Developer",
+    company: "Accredian",
+    description:
+      "Developed a freelancing-platform clone using Next.js with dynamic routing and reusable React components. Built 10+ reusable components across 5+ pages and optimized client-side performance through code-splitting and route optimization.",
+    technologies: ["Next.js", "React", "JavaScript", "HTML", "CSS"],
+  },
+
+  {
+    year: "Sep 2024 - Nov 2024",
+    role: "Java Programming Intern",
+    company: "Nextech Infosystems",
+    description:
+      "Worked on Java programming and GUI application development using JavaFX. Gained hands-on experience with Java application development, user interface design, and database connectivity.",
+    technologies: ["Java", "JavaFX", "MySQL", "JDBC"],
+  },
 ];
 
 export const PROJECTS = [
@@ -40,16 +63,59 @@ export const PROJECTS = [
     image: project1,
     description:
       "The AI Fitness Application is a comprehensive fitness tracking and recommendation platform that leverages artificial intelligence to provide personalized workout and nutrition recommendations. Built with a modern microservices architecture, the application offers real-time activity tracking, AI-powered fitness insights, and a seamless user experience.",
-technologies: ["Java", "SpringBoot", "Microservices", "MySQL", "Postgres", "Kafka", "RabbitMQ", "KeyCloak", "Oauth2.0", "Docker", " Maven", "React", "TailwindCSS"],
-    github: "https://github.com/Jagruti-dhole18/AI-Fitness-Application-MVC-Architecture"
+    technologies: [
+      "Java",
+      "SpringBoot",
+      "Microservices",
+      "MySQL",
+      "Postgres",
+      "Kafka",
+      "RabbitMQ",
+      "KeyCloak",
+      "Oauth2.0",
+      "Docker",
+      " Maven",
+      "React",
+      "TailwindCSS",
+    ],
+    github:
+      "https://github.com/Jagruti-dhole18/AI-Fitness-Application-MVC-Architecture",
+  },
+  {
+    title: "DisasterConnect",
+    image: project6,
+    description:
+      "A real-time disaster response platform connecting citizens, volunteers, NGOs, and administrators to coordinate emergency assistance. Features include SOS alerts, missing persons, disaster resources, camps, donations, and real-time communication.",
+    technologies: [
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Socket.io",
+      "JWT",
+      "Leaflet",
+      "Cloudinary",
+    ],
+    github: "https://github.com/Jagruti-dhole18/DisasterConnect",
+    live: "https://disasterconnect-gamma.vercel.app",
   },
   {
     title: "Signalist - Stock Trading Platform",
     image: project2,
     description:
       "Signalist is a modern stock trading dashboard built with Next.js, React, and MongoDB, offering real-time market data, stock insights, personalized watchlists, and daily news summaries.",
-    technologies: ["Next.js","React", "Node.js", "Express.js","MongoDB","TailwindCSS" ,"Inngest", "CodeRabbit"],
-    github:"https://github.com/Jagruti-dhole18/Signalist-stock-trading-platform",
+    technologies: [
+      "Next.js",
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "TailwindCSS",
+      "Inngest",
+      "CodeRabbit",
+    ],
+    github:
+      "https://github.com/Jagruti-dhole18/Signalist-stock-trading-platform",
     live: "https://signalist-trading-pi.vercel.app/",
   },
   {
@@ -71,36 +137,15 @@ technologies: ["Java", "SpringBoot", "Microservices", "MySQL", "Postgres", "Kafk
     github: "https://github.com/Jagruti-dhole18/Zerodha-frontend",
     live: "https://zerodhatradingapp.netlify.app",
   },
-
   {
-    title: "Weather App",
-    image: project5,
-    description:
-      "A responsive weather application built with React that fetches real-time weather data using APIs, allowing users to search cities and view current conditions and forecasts.",
-    technologies: ["React", "API", "CSS"],
-    github: "https://github.com/Jagruti-dhole18/Weather-App",
-    // live: "https://your-weather-app.vercel.app",
-  },
-  {
-  title: "StudyGeni (AI Study Assistant)",
-  image: project6, // add your image
-  description:
-    "An AI-powered backend application that generates summaries and quizzes from uploaded documents. It processes files and uses AI models to extract key insights and create interactive learning content.",
-  technologies: ["Node.js", "Express", "MongoDB", "AI API"],
-  github: "https://github.com/Jagruti-dhole18/StudyGeni-backend-project",
-  live: "study-geni-backend-project.vercel.app",
-},
-{
     title: "Hospital Management System",
-    image: project7,
+    image: project5,
     description:
       "A desktop-based application built using Java Swing and MySQL to manage hospital operations such as patient registration, appointments, inventory, and billing.",
     technologies: ["Java", "Swing", "MySQL", "JDBC"],
     github: "https://github.com/Jagruti-dhole18/Hospital-Management-System",
   },
-
 ];
-
 
 export const CONTACT = {
   address: "10 A, Mahatma fule nagar shingave road , shirpur ",

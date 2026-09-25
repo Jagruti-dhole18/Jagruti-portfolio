@@ -1,72 +1,72 @@
-import { useState, useEffect } from "react";
+import { useState } from 'react';
 import {
   FaLinkedin,
   FaGithub,
   FaInstagram,
   FaBars,
   FaTimes,
-} from "react-icons/fa";
-import { motion } from "framer-motion";
-import { Link } from "react-scroll";
-import logo from "../assets/logo.svg"
+} from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { Link } from 'react-scroll';
+import logo from '../assets/logo.svg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-
   const navLinks = [
-    { name: "Home", to: "hero" },
-    { name: "About", to: "about" },
-    { name: "Skills", to: "technologies" },
-    { name: "Experience", to: "experience" },
-    { name: "Projects", to: "projects" },
-    { name: "Coding", to: "coding" },
-    { name: "Contact", to: "contact" },
+    { name: 'Home', to: 'hero' },
+    { name: 'About', to: 'about' },
+    { name: 'Skills', to: 'technologies' },
+    { name: 'Experience', to: 'experience' },
+    { name: 'Projects', to: 'projects' },
+    { name: 'Coding', to: 'coding' },
+    { name: 'Contact', to: 'contact' },
   ];
 
   const socialLinks = [
     {
       icon: <FaLinkedin />,
-      link: "https://www.linkedin.com/in/jagruti-dhole-667159299",
+      label: 'LinkedIn',
+      link: 'https://www.linkedin.com/in/jagruti-dhole-667159299',
     },
     {
       icon: <FaGithub />,
-      link: "https://github.com/Jagruti-dhole18",
+      label: 'GitHub',
+      link: 'https://github.com/Jagruti-dhole18',
     },
     {
       icon: <FaInstagram />,
-      link: "https://www.instagram.com/d_jagruti_18",
+      label: 'Instagram',
+      link: 'https://www.instagram.com/d_jagruti_18',
     },
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -80, opacity: 0 }}
+    <motion.header
+      initial={{ y: -30, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/40 border-b border-white/10"
+      transition={{ duration: 0.45, ease: 'easeOut' }}
+      className="navbar-shell"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-4">
-        <div className="flex items-center justify-between">
-          
-          {/* Logo Image */}
-          <Link
-            to="hero"
-            smooth
-            duration={800}
-            offset={-80}
-            className="cursor-pointer flex-shrink-0"
-          >
-            <motion.img
-              whileHover={{ scale: 1.08 }}
-              src={logo}
-              alt="Jagruti Dhole"
-              className="h-12 w-12 md:h-14 md:w-14 rounded-full object-cover border-2 border-purple-500 shadow-lg shadow-purple-500/20"
-            />
-          </Link>
+      <div className="navbar-inner">
+        <Link
+          to="hero"
+          smooth
+          duration={800}
+          offset={-70}
+          className="brand-mark"
+          aria-label="Scroll to the top section"
+        >
+          <motion.img
+            whileHover={{ scale: 1.04 }}
+            src={logo}
+            alt="Jagruti Dhole"
+            className="brand-logo"
+          />
+        </Link>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden lg:flex items-center gap-8 flex-1 justify-center">
+        <nav className="desktop-nav" aria-label="Main navigation">
+          <ul className="nav-list">
             {navLinks.map((item) => (
               <li key={item.name}>
                 <Link
@@ -75,55 +75,57 @@ const Navbar = () => {
                   duration={800}
                   offset={-80}
                   spy
-                  activeClass="text-purple-400"
-                  className="relative cursor-pointer text-sm font-medium text-gray-300 hover:text-white transition group"
+                  hashSpy={false}
+                  activeClass="active"
+                  className="nav-link"
                 >
                   {item.name}
-
-                  <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full" />
                 </Link>
               </li>
             ))}
           </ul>
+        </nav>
 
-          {/* Right Side */}
-          <div className="hidden md:flex items-center gap-3 flex-shrink-0">
-            
-          
-
-            {/* Social Links */}
-            {socialLinks.map((social, index) => (
+        <div className="desktop-actions">
+          <div className="social-stack" aria-label="Social profiles">
+            {socialLinks.map((social) => (
               <motion.a
-                key={index}
+                key={social.label}
                 href={social.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ y: -3, scale: 1.1 }}
-                className="p-3 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition"
+                whileHover={{ y: -2 }}
+                className="social-link"
+                aria-label={social.label}
               >
                 {social.icon}
               </motion.a>
             ))}
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden text-2xl text-white"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <FaTimes /> : <FaBars />}
-          </button>
         </div>
+
+        <button
+          type="button"
+          className="mobile-menu-button"
+          onClick={() => setIsOpen((open) => !open)}
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        >
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -15 }}
+          id="mobile-menu"
+          initial={{ opacity: 0, y: -18 }}
           animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden bg-black/95 backdrop-blur-xl border-t border-white/10"
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.2 }}
+          className="mobile-menu"
         >
-          <ul className="flex flex-col items-center gap-6 py-8">
+          <ul className="mobile-nav-list">
             {navLinks.map((item) => (
               <li key={item.name}>
                 <Link
@@ -131,43 +133,34 @@ const Navbar = () => {
                   smooth
                   duration={800}
                   offset={-80}
+                  hashSpy={false}
                   onClick={() => setIsOpen(false)}
-                  className="text-lg text-gray-300 hover:text-white cursor-pointer transition"
+                  className="mobile-nav-link"
                 >
                   {item.name}
                 </Link>
               </li>
             ))}
-
-            {/* Theme Toggle */}
-            <button
-              onClick={() =>
-                setTheme(theme === "dark" ? "light" : "dark")
-              }
-              className="flex items-center gap-2 px-5 py-3 rounded-full border border-white/10 bg-white/5 text-white"
-            >
-              {theme === "dark" ? <FaSun /> : <FaMoon />}
-              {theme === "dark" ? "Light Mode" : "Dark Mode"}
-            </button>
-
-            {/* Mobile Socials */}
-            <div className="flex gap-4 pt-2">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xl text-gray-300 hover:text-white transition"
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
           </ul>
+
+
+          <div className="mobile-socials">
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="social-link"
+              >
+                {social.icon}
+              </a>
+            ))}
+          </div>
         </motion.div>
       )}
-    </motion.nav>
+    </motion.header>
   );
 };
 

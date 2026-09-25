@@ -1,96 +1,156 @@
-import { RiReactjsLine } from "react-icons/ri";
-import { FaHtml5, FaCss3Alt, FaJava, FaGitAlt, FaGithub, FaDocker } from "react-icons/fa";
-import { SiJavascript, SiC, SiMysql, SiTailwindcss, SiSpringboot, SiThymeleaf, SiBootstrap, SiPhp, SiCplusplus, SiTypescript, SiExpress, SiPostgresql, SiNodedotjs, SiMongodb, SiPython, SiNextdotjs, SiPostman, SiVercel, SiNetlify, SiRender } from "react-icons/si";
-import { BiLogoVisualStudio } from "react-icons/bi";
-import { motion } from "framer-motion";
+import { RiReactjsLine } from 'react-icons/ri';
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJava,
+  FaGitAlt,
+  FaGithub,
+  FaDocker,
+  FaCloud,
+  FaServer,
+  FaShieldAlt,
+} from 'react-icons/fa';
+import {
+  SiJavascript,
+  SiC,
+  SiMysql,
+  SiTailwindcss,
+  SiSpringboot,
+  SiCplusplus,
+  SiTypescript,
+  SiExpress,
+  SiPostgresql,
+  SiNodedotjs,
+  SiMongodb,
+  SiNextdotjs,
+  SiPostman,
+  SiVercel,
+  SiNetlify,
+  SiRender,
+} from 'react-icons/si';
+import { BiLogoVisualStudio } from 'react-icons/bi';
 
-const techStack = [
-  { icon: <RiReactjsLine />, name: "React", color: "text-cyan-400" },
-  { icon: <SiNextdotjs />, name: "Next.js", color: "text-white" },
-  { icon: <SiTypescript />, name: "TypeScript", color: "text-blue-400" },
-  { icon: <SiJavascript />, name: "JavaScript", color: "text-yellow-400" },
-  { icon: <FaHtml5 />, name: "HTML", color: "text-orange-500" },
-  { icon: <FaCss3Alt />, name: "CSS", color: "text-blue-500" },
-  { icon: <SiTailwindcss />, name: "Tailwind", color: "text-cyan-400" },
-  { icon: <SiBootstrap />, name: "Bootstrap", color: "text-purple-500" },
+const makeBadge = (label, color = '#7dd3fc') => (
+  <span
+    style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minWidth: '2.1rem',
+      height: '1.6rem',
+      padding: '0 0.45rem',
+      borderRadius: '999px',
+      fontSize: '0.68rem',
+      fontWeight: 700,
+      letterSpacing: '0.04em',
+      color,
+      background: 'rgba(255,255,255,0.08)',
+      border: '1px solid rgba(255,255,255,0.1)',
+    }}
+  >
+    {label}
+  </span>
+);
 
-  { icon: <SiSpringboot />, name: "Spring Boot", color: "text-green-500" },
-  { icon: <SiThymeleaf />, name: "Thymeleaf", color: "text-green-600" },
-  { icon: <FaJava />, name: "Java", color: "text-red-500" },
-  { icon: <SiNodedotjs />, name: "Node.js", color: "text-green-400" },
-  { icon: <SiExpress />, name: "Express.js", color: "text-gray-300" },
-
-  { icon: <SiMongodb />, name: "MongoDB", color: "text-green-600" },
-  { icon: <SiPostgresql />, name: "PostgreSQL", color: "text-blue-400" },
-  { icon: <SiMysql />, name: "MySQL", color: "text-blue-600" },
-
-  { icon: <SiPython />, name: "Python", color: "text-yellow-300" },
-  { icon: <SiC />, name: "C", color: "text-blue-700" },
-  { icon: <SiCplusplus />, name: "C++", color: "text-blue-500" },
-  { icon: <SiPhp />, name: "PHP", color: "text-indigo-400" },
-];
-
-const tools = [
-  { icon: <FaGitAlt />, name: "Git", color: "text-orange-500" },
-  { icon: <FaGithub />, name: "GitHub", color: "text-white" },
-  { icon: <FaDocker />, name: "Docker", color: "text-blue-400" },
-  { icon: <SiPostman />, name: "Postman", color: "text-orange-400" },
-  { icon: <BiLogoVisualStudio />, name: "VS Code", color: "text-blue-500" },
-  { icon: <SiVercel />, name: "Vercel", color: "text-white" },
-  { icon: <SiNetlify />, name: "Netlify", color: "text-green-400" },
-  { icon: <SiRender />, name: "Render", color: "text-purple-400" },
-];
-
-const MarqueeRow = ({ items, reverse = false }) => {
-  
-  
-  const duration = items.length * 3; 
-
-  return (
-    <div className="relative w-full overflow-hidden">
+const skillGroups = [
+  {
+    title: 'Programming Languages',
+    items: [
+      { icon: <FaJava />, name: 'Java', color: '#ED8B00' },
+      { icon: <SiJavascript />, name: 'JavaScript', color: '#F7DF1E' },
+      { icon: <SiTypescript />, name: 'TypeScript', color: '#3178C6' },
+      { icon: <SiC />, name: 'C', color: '#A8B9CC' },
+      { icon: <SiCplusplus />, name: 'C++', color: '#00599C' },
       
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10" />
-
-      <motion.div
-        animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
-        transition={{
-          repeat: Infinity,
-          duration: duration, 
-          ease: "linear",
-        }}
-        className="flex gap-6 w-max"
-      >
-        {[...items, ...items, ...items].map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center justify-center min-w-[120px] bg-neutral-900 border border-neutral-700 rounded-2xl p-4 hover:scale-110 hover:shadow-purple-500/30 hover:shadow-lg transition duration-300"
-          >
-            <div className={`text-4xl ${item.color}`}>{item.icon}</div>
-            <p className="text-sm text-gray-300 mt-2">{item.name}</p>
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  );
-};
-
+    ],
+  },
+  {
+    title: 'Frontend',
+    items: [
+      { icon: <RiReactjsLine />, name: 'React.js', color: '#61DBFB' },
+      { icon: <SiNextdotjs />, name: 'Next.js', color: '#111111' },
+      { icon: <SiTailwindcss />, name: 'Tailwind CSS', color: '#38BDF8' },
+      { icon: makeBadge('MUI', '#007FFF'), name: 'Material UI', color: '#007FFF' },
+      { icon: makeBadge('RDX', '#764ABC'), name: 'Redux', color: '#764ABC' },
+      { icon: makeBadge('RTC', '#22C55E'), name: 'WebRTC', color: '#22C55E' },
+      { icon: <FaHtml5 />, name: 'HTML', color: '#E34F26' },
+      { icon: <FaCss3Alt />, name: 'CSS', color: '#1572B6' }
+    ],
+  },
+  {
+    title: 'Backend',
+    items: [
+      { icon: <SiSpringboot />, name: 'Spring Boot', color: '#6DB33F' },
+      { icon: <SiNodedotjs />, name: 'Node.js', color: '#68A063' },
+      { icon: <SiExpress />, name: 'Express.js', color: '#4d4d4d' },
+      { icon: makeBadge('WS', '#8B5CF6'), name: 'WebSocket', color: '#8B5CF6' },
+      { icon: makeBadge('JDBC', '#F97316'), name: 'JDBC', color: '#F97316' },
+      { icon: makeBadge('MS', '#14B8A6'), name: 'Microservices', color: '#14B8A6' },
+      { icon: makeBadge('O2', '#22C55E'), name: 'OAuth 2.0', color: '#22C55E' },
+      { icon: makeBadge('KC', '#8B5CF6'), name: 'Keycloak', color: '#8B5CF6' },
+      { icon: makeBadge('BA', '#14B8A6'), name: 'Better Auth', color: '#14B8A6' },
+    ],
+  },
+  {
+    title: 'Database',
+    items: [
+      { icon: <SiMongodb />, name: 'MongoDB', color: '#4DB33D' },
+      { icon: <SiMysql />, name: 'MySQL', color: '#00758F' },
+      { icon: <SiPostgresql />, name: 'PostgreSQL', color: '#336791' },
+    ],
+  },
+  {
+    title: 'DevOps & Tools',
+    items: [
+      { icon: <FaDocker />, name: 'Docker', color: '#2496ED' },
+      { icon: <FaCloud />, name: 'Kubernetes', color: '#38BDF8' },
+      { icon: makeBadge('GHA', '#181717'), name: 'GitHub Actions', color: '#181717' },
+      { icon: makeBadge('JEN', '#D97706'), name: 'Jenkins', color: '#D97706' },
+      { icon: <FaServer />, name: 'CI/CD', color: '#60A5FA' },
+      { icon: <FaGitAlt />, name: 'Git', color: '#F05032' },
+      { icon: <FaGithub />, name: 'GitHub', color: '#181717' },
+      { icon: <BiLogoVisualStudio />, name: 'VS Code', color: '#007ACC' },
+      { icon: <SiPostman />, name: 'Postman', color: '#FF6C37' },
+      { icon: <SiVercel />, name: 'Vercel', color: '#000000' },
+      { icon: <SiNetlify />, name: 'Netlify', color: '#00C7B7' },
+      { icon: <SiRender />, name: 'Render', color: '#46ECA5' },
+    ],
+  },
+  {
+    title: 'Integrations',
+    items: [
+      { icon: makeBadge('K', '#4F46E5'), name: 'Kafka', color: '#4F46E5' },
+      { icon: makeBadge('RMQ', '#FF6600'), name: 'RabbitMQ', color: '#FF6600' },
+      { icon: makeBadge('E', '#0EA5E9'), name: 'Eureka', color: '#0EA5E9' },
+      { icon: makeBadge('ING', '#10B981'), name: 'Inngest', color: '#10B981' },
+    ],
+  },
+];
 
 const Technologies = () => {
   return (
-    <div className="border-b border-neutral-800 pb-24" id="technologies">
-      
-      <h2 className="my-16 text-center text-4xl text-white font-semibold">
-        Technologies & Tools
-      </h2>
-
-      <MarqueeRow items={techStack} />
-
-      <div className="mt-10">
-        <MarqueeRow items={tools} reverse />
+    <section className="section-shell" id="technologies">
+      <div className="section-header">
+        <h2 className="section-title">Tech-Stack</h2>
       </div>
 
-    </div>
+      <div className="skills-grid">
+        {skillGroups.map((group) => (
+          <div key={group.title} className="skill-group">
+            <h3>{group.title}</h3>
+            <div className="skill-list">
+              {group.items.map((item) => (
+                <div key={item.name} className="skill-item">
+                  <span className="skill-icon" style={{ color: item.color }}>{item.icon}</span>
+                  <span>{item.name}</span>
+                  {item.badge && <span className="skill-badge">{item.badge}</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 

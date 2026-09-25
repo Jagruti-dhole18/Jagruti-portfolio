@@ -1,35 +1,34 @@
-import { motion } from "framer-motion";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-import { useState } from "react";
-import emailjs from "@emailjs/browser";
-import { CONTACT } from "../constants";
+import { motion } from 'framer-motion';
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { useState } from 'react';
+import emailjs from '@emailjs/browser';
+import { CONTACT } from '../constants';
+import zertifikate from '../assets/Zertifikate.pdf'
 
 const Contact = () => {
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
+    name: '',
+    email: '',
+    message: '',
   });
 
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
-
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!form.name || !form.email || !form.message) {
-      setStatus("Please fill all fields ❗");
+      setStatus('Please fill all fields.');
       return;
     }
 
     setLoading(true);
-    setStatus("Sending... ⏳");
+    setStatus('Sending...');
 
     emailjs
       .send(
@@ -40,67 +39,97 @@ const Contact = () => {
           email: form.email,
           message: form.message,
         },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       )
       .then(() => {
         setLoading(false);
-        setStatus("Message sent successfully ✅");
-        setForm({ name: "", email: "", message: "" });
+        setStatus('Message sent successfully.');
+        setForm({ name: '', email: '', message: '' });
       })
       .catch((error) => {
         console.error(error);
         setLoading(false);
-        setStatus("Failed to send ❌");
+        setStatus('Failed to send. Please try again.');
       });
   };
 
   return (
-    <div className="border-b border-neutral-900 pb-20" id="contact">
-      <motion.h2
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -80 }}
-        transition={{ duration: 0.6 }}
-        className="my-16 text-center text-4xl font-semibold text-white"
-      >
-        Get in Touch
-      </motion.h2>
+    <>
+      <section className="section-shell german-shell">
+        <div className="section-header">
+          <h2 className="section-title">German-Certification.</h2>
+        </div>
 
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10">
+        <div className="german-card">
+          <div className="german-badge">German A1</div>
 
+          <p>
+            I’ve successfully completed my German A1 certification and continue building my language skills while
+            growing as a developer.
+          </p>
 
-        <div className="space-y-6 text-gray-300">
-          <h3 className="text-2xl text-white">Let’s Connect 👋</h3>
+          <div className="german-meta">
+            <span>Listening</span>
+            <span>Speaking</span>
+            <span>Reading</span>
+            <span>Writing</span>
+          </div>
 
-          <div className="space-y-4">
-            <div className="flex gap-3 items-center">
-              <FaMapMarkerAlt className="text-purple-400" />
+          <a href={zertifikate} className="german-button" >
+            View License
+          </a>
+        </div>
+      </section>
+
+      <section className="section-shell" id="contact">
+        <div className="section-header">
+          <h2 className="section-title">Reach out</h2>
+        </div>
+
+        <div className="contact-grid">
+        <motion.aside
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.45 }}
+          className="contact-card"
+        >
+          <p className="section-copy contact-intro">
+            I’m open to product engineering roles, frontend work, and collaborative build opportunities.
+          </p>
+
+          <div className="contact-list">
+            <div className="contact-item">
+              <FaMapMarkerAlt aria-hidden="true" />
               <span>{CONTACT.address}</span>
             </div>
 
-            <div className="flex gap-3 items-center">
-              <FaPhoneAlt className="text-purple-400" />
+            <div className="contact-item">
+              <FaPhoneAlt aria-hidden="true" />
               <span>{CONTACT.phoneNo}</span>
             </div>
 
-            <div className="flex gap-3 items-center">
-              <FaEnvelope className="text-purple-400" />
+            <div className="contact-item">
+              <FaEnvelope aria-hidden="true" />
               <span>{CONTACT.email}</span>
             </div>
           </div>
-        </div>
+        </motion.aside>
 
-
-        <form
+        <motion.form
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 20 }}
+          transition={{ duration: 0.45 }}
           onSubmit={handleSubmit}
-          className="bg-neutral-900 border border-neutral-700 p-6 rounded-2xl shadow-lg space-y-5"
+          className="contact-form"
         >
           <input
             type="text"
             name="name"
             value={form.name}
             onChange={handleChange}
-            placeholder="Your Name"
-            className="w-full p-3 rounded-lg bg-neutral-800 text-white border border-neutral-700 focus:border-purple-500"
+            placeholder="Your name"
+            className="input-field"
+            aria-label="Your name"
           />
 
           <input
@@ -108,33 +137,30 @@ const Contact = () => {
             name="email"
             value={form.email}
             onChange={handleChange}
-            placeholder="Your Email"
-            className="w-full p-3 rounded-lg bg-neutral-800 text-white border border-neutral-700 focus:border-purple-500"
+            placeholder="Your email"
+            className="input-field"
+            aria-label="Your email"
           />
 
           <textarea
             name="message"
-            rows="4"
+            rows="5"
             value={form.message}
             onChange={handleChange}
-            placeholder="Your Message"
-            className="w-full p-3 rounded-lg bg-neutral-800 text-white border border-neutral-700 focus:border-purple-500"
+            placeholder="Your message"
+            className="textarea-field"
+            aria-label="Your message"
           ></textarea>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 py-3 rounded-lg text-white hover:scale-105 transition"
-          >
-            {loading ? "Sending..." : "Send Message"}
+          <button type="submit" disabled={loading} className="primary-button" aria-label="Send message">
+            {loading ? 'Sending...' : 'Send Message'}
           </button>
 
-          {status && (
-            <p className="text-center text-sm text-gray-300">{status}</p>
-          )}
-        </form>
+          {status && <p className="form-status">{status}</p>}
+        </motion.form>
       </div>
-    </div>
+    </section>
+    </>
   );
 };
 

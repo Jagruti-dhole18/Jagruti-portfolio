@@ -1,94 +1,59 @@
-import { PROJECTS } from "../constants";
-import { motion } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { PROJECTS } from '../constants';
+import { motion } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const Projects = () => {
   return (
-    <div className="border-b border-neutral-900 pb-20" id="projects">
-      
-    
-      <motion.h2
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -80 }}
-        transition={{ duration: 0.6 }}
-        className="my-16 text-center text-4xl font-semibold text-white"
-      >
-        Projects
-      </motion.h2>
+    <section className="section-shell" id="projects">
+      <div className="section-header">
+        <h2 className="section-title">Projects</h2>
+      </div>
 
-      <div className="max-w-6xl mx-auto px-6 grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        
+      <div className="project-stack">
         {PROJECTS.map((project, index) => (
-          <motion.div
-            key={index}
+          <motion.article
+            key={`${project.title}-${index}`}
             whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 60 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="bg-neutral-900 border border-neutral-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-purple-500/20 hover:scale-[1.03] transition duration-300"
+            initial={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.45, delay: index * 0.07 }}
+            className={`project-case ${index % 2 === 1 ? 'reverse' : ''}`}
           >
-
-            <div className="overflow-hidden">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover hover:scale-110 transition duration-500"
-              />
+            <div className="project-media">
+              <img src={project.image} alt={project.title} />
             </div>
 
-            <div className="p-5">
+            <div className="project-content">
+              <h3 className="project-title">{project.title}</h3>
+              <p className="project-description">{project.description}</p>
 
-              <h3 className="text-lg font-semibold text-white mb-2">
-                {project.title}
-              </h3>
-
-              <p className="text-gray-400 text-sm mb-4 line-clamp-3">
-                {project.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="project-tech">
                 {project.technologies.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="text-xs px-3 py-1 bg-purple-500/10 text-purple-300 rounded-full border border-purple-500/20"
-                  >
+                  <span key={`${tech}-${i}`} className="project-chip">
                     {tech}
                   </span>
                 ))}
               </div>
 
-              <div className="flex gap-4 mt-3">
-                
+              <div className="project-links">
                 {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-white transition"
-                  >
-                    <FaGithub size={20} />
+                  <a href={project.github} target="_blank" rel="noopener noreferrer">
+                    <FaGithub />
+                    <span>Code</span>
                   </a>
                 )}
 
                 {project.live && (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-purple-400 transition"
-                  >
-                    <FaExternalLinkAlt size={18} />
+                  <a href={project.live} target="_blank" rel="noopener noreferrer">
+                    <FaExternalLinkAlt />
+                    <span>Live</span>
                   </a>
                 )}
-
               </div>
-
             </div>
-
-          </motion.div>
+          </motion.article>
         ))}
-
       </div>
-    </div>
+    </section>
   );
 };
 

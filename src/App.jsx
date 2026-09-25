@@ -6,45 +6,84 @@ import Contact from './components/Contact'
 import Experience from './components/Experience'
 import Footer from './components/Footer'
 import Hero from './components/Hero'
-import Loader from './components/Loader'
 import Navbar from './components/Navbar'
 import Projects from './components/Projects'
 import Technologies from './components/Technologies'
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [phase, setPhase] = useState('intro')
+  const [typedName, setTypedName] = useState('')
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === 'undefined') return 'light'
+
+    const savedTheme = window.localStorage.getItem('portfolio-theme')
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      return savedTheme
+    }
+
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  })
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
+    document.documentElement.setAttribute('data-theme', theme)
+    window.localStorage.setItem('portfolio-theme', theme)
+  }, [theme])
 
-    return () => clearTimeout(timer);
-  }, []);
+  useEffect(() => {
+    if (phase !== 'intro') return
 
-  if (loading) {
-    return <Loader />;
-  }
-  return (
-    <div className='relative min-h-screen w-full bg-slate-950 overflow-x-hidden  selection:bg-cyan-500 selection:text-cyan-900'>
-      <div className='flixed top-0 -z-10 h-full w-full'>
-      <div className="absolute bottom-0 left-[-20%] right-0 top-[-10%] h-[500px] w-[500px] rounded-full 
-        bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,0.15),rgba(255,255,255,0))]"></div>
-      <div className="absolute bottom-0 right-[-20%] top-[-10%] h-[500px] w-[500px] rounded-full 
-        bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,0.15),rgba(255,255,255,0))]"></div>
-        
+    const fullName = 'Jagruti Dhole'
+    let index = 0
+
+    const typingTimer = window.setInterval(() => {
+      index += 1
+      setTypedName(fullName.slice(0, index))
+
+      if (index >= fullName.length) {
+        window.clearInterval(typingTimer)
+
+        const finishTimer = window.setTimeout(() => {
+          setPhase('home')
+        }, 700)
+
+        return () => window.clearTimeout(finishTimer)
+      }
+    }, 130)
+
+    return () => window.clearInterval(typingTimer)
+  }, [phase])
+
+  if (phase === 'intro') {
+    const isComplete = typedName.length >= 'Jagruti Dhole'.length
+
+    return (
+      <div className="intro-screen" aria-live="polite" aria-busy="true">
+        <div className="intro-name-wrap">
+          <h1 className="intro-name" aria-label="Jagruti Dhole">
+            {typedName}
+            <span className="intro-cursor" aria-hidden="true" />
+          </h1>
+          <span className={`intro-underline ${isComplete ? 'is-visible' : ''}`} aria-hidden="true" />
         </div>
-        <div className='container mx-auto px-8'>
+      </div>
+    )
+  }
 
-      <Navbar />
-      <Hero/>
-      <About/>
-      <Technologies/>
-      <Experience/>
-      <Projects/>
-      <CodingPlatforms/>
-      <Contact/>
-      <Footer/>
+  return (
+    <div className="site-shell homepage-enter">
+      <div className="page-noise" aria-hidden="true" />
+      <div className="app-container">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Technologies />
+          <Experience />
+          <Projects />
+          <CodingPlatforms />
+          <Contact />
+        </main>
+        <Footer />
       </div>
     </div>
   )

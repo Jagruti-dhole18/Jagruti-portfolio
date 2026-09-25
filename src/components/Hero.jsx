@@ -1,107 +1,114 @@
-import profile from "../assets/image.jpg";
-import { HERO_CONTENT } from "../constants";
-import { motion } from "framer-motion";
-import { TypeAnimation } from "react-type-animation";
+import profile from '../assets/jagruti.jpeg';
+import { HERO_CONTENT } from '../constants';
+import { motion } from 'framer-motion';
+import { TypeAnimation } from 'react-type-animation';
+import { Link } from 'react-scroll';
 
 const container = (delay) => ({
-  hidden: { x: -100, opacity: 0 },
+  hidden: { x: -30, opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
-    transition: { duration: 0.6, delay },
+    transition: { duration: 0.55, delay },
   },
 });
 
 const Hero = () => {
   return (
-    <div className="pt-28 border-b border-neutral-900 pb-20" id="hero">
-      <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-10">
+    <section className="section-shell hero-shell" id="hero">
+      <div className="hero-layout">
+        <div className="hero-copy">
 
-        <div className="w-full lg:w-1/2 text-center lg:text-left">
-          <motion.h2
-            variants={container(0)}
+          <motion.h1
+            variants={container(0.08)}
             initial="hidden"
             animate="visible"
-            className="text-white text-4xl md:text-6xl lg:text-7xl font-bold leading-tight"
+            className="hero-title display-font "
           >
-            Hi, I’m <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500">Jagruti Dhole</span>
-          </motion.h2>
+            Hi, I’m <span className="accent">Jagruti Dhole</span>
+          </motion.h1>
 
           <motion.div
-            variants={container(0.4)}
+            variants={container(0.18)}
             initial="hidden"
             animate="visible"
-            className="mt-4 text-xl md:text-2xl font-semibold text-purple-400"
+            className="hero-role"
           >
-            <TypeAnimation
-              sequence={[
-                "Frontend Developer",
-                1500,
-                "MERN Stack Developer",
-                1500,
-                "Backend Developer",
-                1500,
-                "Java Enthusiast",
-                1500,
-              ]}
-              speed={50}
-              repeat={Infinity}
-            />
+            <span className="role-label">
+              <TypeAnimation
+                sequence={[
+                  'Frontend Developer',
+                  1200,
+                  'MERN Stack Developer',
+                  1200,
+                  'Backend Developer',
+                  1200,
+                  'Java Enthusiast',
+                  1200,
+                ]}
+                speed={38}
+                repeat={Infinity}
+              />
+            </span>
           </motion.div>
 
           <motion.p
-            variants={container(0.8)}
+            variants={container(0.25)}
             initial="hidden"
             animate="visible"
-            className="mt-6 text-gray-400 max-w-lg text-sm md:text-base leading-relaxed mx-auto lg:mx-0"
+            className="hero-description"
           >
             {HERO_CONTENT}
           </motion.p>
 
           <motion.div
-            variants={container(1.2)}
+            variants={container(0.3)}
             initial="hidden"
             animate="visible"
-            className="mt-8 flex justify-center lg:justify-start gap-4"
+            className="hero-actions"
           >
-            <a
-              href="#projects"
-              className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm md:text-base hover:scale-105 transition"
+            <Link
+              to="projects"
+              smooth={true}
+              duration={800}
+              offset={-80}
+              hashSpy={false}
+              className="primary-button"
             >
               View Projects
-            </a>
-
-            <a
-              href="#contact"
-              className="px-6 py-3 rounded-full border border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white transition text-sm md:text-base"
+            </Link>
+            <Link
+              to="contact"
+              smooth={true}
+              duration={800}
+              offset={-80}
+              hashSpy={false}
+              className="secondary-button"
             >
               Contact Me
-            </a>
+            </Link>
           </motion.div>
         </div>
 
-        <div className="w-full lg:w-1/2 flex justify-center">
+        <div className="hero-visual">
           <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ repeat: Infinity, duration: 3 }}
-            className="relative"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="portrait-wrap"
           >
-            <div className="absolute inset-0 bg-purple-500/30 blur-3xl rounded-full"></div>
-
+            <div className="portrait-glow" aria-hidden="true" />
             <motion.img
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              whileHover={{ scale: 1.07 }}
-              transition={{ duration: 0.6 }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
               src={profile}
-              alt="Jagruti"
-              className="relative w-[150px] h-[150px] md:w-[380px] md:h-[380px] lg:w-[450px] lg:h-[450px] object-cover rounded-full border-4 border-purple-500 shadow-2xl"
+              alt="Jagruti Dhole"
+              className="portrait-image"
             />
           </motion.div>
         </div>
-
       </div>
-    </div>
+    </section>
   );
 };
 
