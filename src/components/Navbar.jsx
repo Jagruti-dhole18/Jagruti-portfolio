@@ -63,6 +63,7 @@ const Navbar = () => {
             alt="Jagruti Dhole"
             className="brand-logo"
           />
+          <span className="brand-name">Jagruti Dhole</span>
         </Link>
 
         <nav className="desktop-nav" aria-label="Main navigation">

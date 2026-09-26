@@ -279,7 +279,19 @@ html[data-theme='dark'] .navbar-shell {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.65rem;
   border-radius: 9999px;
+  text-decoration: none;
+}
+
+.brand-name {
+  color: var(--text);
+  font-size: 0.8rem;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .brand-logo {
@@ -289,6 +301,7 @@ html[data-theme='dark'] .navbar-shell {
   object-fit: cover;
   border: 1px solid var(--border);
   box-shadow: 0 12px 26px rgba(91, 95, 239, 0.12);
+  flex-shrink: 0;
 }
 
 .desktop-nav {
@@ -445,6 +458,10 @@ html[data-theme='dark'] .navbar-shell {
   font-size: clamp(2.6rem, 5.5vw, 5rem);
   line-height: 0.95;
   letter-spacing: -0.05em;
+}
+
+.hero-line {
+  display: inline;
 }
 
 .hero-title .accent {
@@ -1424,7 +1441,7 @@ html[data-theme='dark'] .loader-ring-secondary {
 
 @media (max-width: 640px) {
   .app-container {
-    padding: 0 0.8rem 1.5rem;
+    padding: 5.3rem 0.8rem 1.5rem;
   }
 
   .navbar-inner {
@@ -1439,6 +1456,27 @@ html[data-theme='dark'] .loader-ring-secondary {
 
   .section-shell {
     padding: 3.8rem 0;
+  }
+
+  .hero-shell {
+    padding-top: 0.75rem;
+  }
+
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    max-width: 100%;
+    font-size: clamp(2.15rem, 10vw, 3.15rem);
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+  }
+
+  .hero-line,
+  .hero-line-bottom,
+  .hero-line-top {
+    display: block;
+    white-space: normal;
   }
 
   .hero-actions {
@@ -1456,14 +1494,50 @@ html[data-theme='dark'] .loader-ring-secondary {
     grid-template-columns: 1fr;
   }
 
-  .timeline-item,
-  .timeline-item:nth-child(even) {
-    grid-template-columns: 2.5rem minmax(0, 1fr);
+  .timeline {
+    gap: 1rem;
   }
 
-  .timeline-item:nth-child(even) .timeline-marker,
-  .timeline-item:nth-child(even) .timeline-card {
-    grid-column: auto;
+  .timeline::before {
+    left: 1.1rem;
+    transform: none;
+  }
+
+  .timeline-item,
+  .timeline-item.odd,
+  .timeline-item.even {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    column-gap: 0.75rem;
+    width: 100%;
+  }
+
+  .timeline-item.odd .timeline-card,
+  .timeline-item.even .timeline-card {
+    grid-column: 2;
+    justify-self: stretch;
+    width: 100%;
+    max-width: none;
+  }
+
+  .timeline-item.odd .timeline-marker,
+  .timeline-item.even .timeline-marker {
+    grid-column: 1;
+    grid-row: 1;
+    place-self: center;
+  }
+
+  .timeline-card {
+    padding: 1rem 1rem 0.9rem;
+  }
+
+  .brand-mark {
+    gap: 0.45rem;
+  }
+
+  .brand-name {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    max-width: 8.2rem;
   }
 
   .coding-grid {

@@ -25,7 +25,8 @@ const Hero = () => {
             animate="visible"
             className="hero-title display-font "
           >
-            Hi, I’m <span className="accent">Jagruti Dhole</span>
+            <span className="hero-line hero-line-top">Hi, I’m </span>
+            <span className="hero-line hero-line-bottom"><span className="accent">Jagruti Dhole</span></span>
           </motion.h1>
 
           <motion.div
