@@ -13,20 +13,12 @@ import Technologies from './components/Technologies'
 function App() {
   const [phase, setPhase] = useState('intro')
   const [typedName, setTypedName] = useState('')
-  const [theme, setTheme] = useState(() => {
-    if (typeof window === 'undefined') return 'light'
-
-    const savedTheme = window.localStorage.getItem('portfolio-theme')
-    if (savedTheme === 'light' || savedTheme === 'dark') {
-      return savedTheme
-    }
-
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  })
+  const [theme] = useState('dark')
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    window.localStorage.setItem('portfolio-theme', theme)
+    document.documentElement.setAttribute('data-theme', 'dark')
+    window.localStorage.setItem('portfolio-theme', 'dark')
+    window.localStorage.removeItem('portfolio-theme-light')
   }, [theme])
 
   useEffect(() => {
